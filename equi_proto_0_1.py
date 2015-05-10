@@ -16,6 +16,8 @@ RADIUS = 500.0
 
 SFO_GEO = 37.618889, -122.375
 
+LIMIT = 10
+
 @app.route('/')
 def home():
     try:
@@ -30,7 +32,7 @@ def home():
     latlong = (SFO_GEO[0] + points[0])/2.0, (SFO_GEO[1] + points[1])/2.0
 
     client = YelpClient(KEYS)
-    api_resp = client.search_by_geo_coord(latlong=latlong, term=term)
+    api_resp = client.search_by_geo_coord(latlong=latlong, term=term, limit=LIMIT)
     return json.dumps(api_resp)
 
 if __name__ == '__main__':
